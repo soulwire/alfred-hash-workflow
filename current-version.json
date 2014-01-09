@@ -1,0 +1,5 @@
+{
+	"version": 1.0,
+	"download_url": "https://raw.github.com/soulwire/alfred-hash-workflow/master/hash.alfredworkflow",
+    "description": "Generate hashes for strings using various algorithms including MD5, SHA1, SHA224, SHA256, SHA384 and SHA512"
+}

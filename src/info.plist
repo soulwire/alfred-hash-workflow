@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>uk.soulwire.hash</string>
+	<key>connections</key>
+	<dict>
+		<key>2254EFA2-33C4-4692-AFD8-C7555C2997B0</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>DFD13112-9469-42A2-AF48-22861E5C2CBE</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>15BDED58-EF93-4B4F-BF0C-4F610E755998</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Justin Windle</string>
+	<key>description</key>
+	<string>Encode using various hashing algorithms</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Hash</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>DFD13112-9469-42A2-AF48-22861E5C2CBE</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>keyword</key>
+				<string>hash</string>
+				<key>runningsubtext</key>
+				<string>please wait</string>
+				<key>script</key>
+				<string>import hashlib
+import sys
+from xml.dom.minidom import parse, parseString
+
+query = '{query}'
+
+# Generate hashes
+
+result = {
+    'MD5':    hashlib.md5( query ).hexdigest(),
+    'SHA1':   hashlib.sha1( query ).hexdigest(),
+    'SHA224': hashlib.sha224( query ).hexdigest(),
+    'SHA256': hashlib.sha256( query ).hexdigest(),
+    'SHA384': hashlib.sha384( query ).hexdigest(),
+    'SHA512': hashlib.sha512( query ).hexdigest()
+}
+
+# Generate XML output
+
+dom = parseString( '&lt;items&gt;&lt;/items&gt;' )
+items = dom.childNodes[0]
+
+for key, value in result.items():
+
+    item = dom.createElement( 'item' )
+    item.setAttribute( 'arg', value )
+    items.appendChild( item )
+
+    title = dom.createElement( 'title' )
+    title.appendChild( dom.createTextNode( key ) )
+    item.appendChild( title )
+
+    subtitle = dom.createElement( 'subtitle' )
+    subtitle.appendChild( dom.createTextNode( value ) )
+    item.appendChild( subtitle )
+
+    icon = dom.createElement( 'icon' )
+    icon.appendChild( dom.createTextNode( 'icon.png' ) )
+    item.appendChild( icon )
+
+print dom.toxml()</string>
+				<key>subtext</key>
+				<string>placeholder</string>
+				<key>title</key>
+				<string>Encode with hash</string>
+				<key>type</key>
+				<integer>3</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>2254EFA2-33C4-4692-AFD8-C7555C2997B0</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<true/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>Copied to clipboard</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>15BDED58-EF93-4B4F-BF0C-4F610E755998</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>15BDED58-EF93-4B4F-BF0C-4F610E755998</key>
+		<dict>
+			<key>ypos</key>
+			<real>140</real>
+		</dict>
+		<key>2254EFA2-33C4-4692-AFD8-C7555C2997B0</key>
+		<dict>
+			<key>ypos</key>
+			<real>20</real>
+		</dict>
+		<key>DFD13112-9469-42A2-AF48-22861E5C2CBE</key>
+		<dict>
+			<key>ypos</key>
+			<real>20</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>http://soulwire.co.uk</string>
+</dict>
+</plist>
