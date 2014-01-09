@@ -1,7 +1,4 @@
-Hash Workflow for Alfred
-=====================
-
-##[Download v1.0](https://github.com/soulwire/alfred-hash-workflow/raw/master/hash.alfredworkflow)
+#Hash Workflow for Alfred ([Download](https://github.com/soulwire/alfred-hash-workflow/raw/master/hash.alfredworkflow))
 
 Generate hashes for strings via Alfred using various algorithms including [MD5](http://en.wikipedia.org/wiki/MD5), [SHA1](http://en.wikipedia.org/wiki/SHA1), [SHA224](http://en.wikipedia.org/wiki/SHA224), [SHA256](http://en.wikipedia.org/wiki/SHA256), [SHA384](http://en.wikipedia.org/wiki/SHA384) and [SHA512](http://en.wikipedia.org/wiki/SHA512)
 
